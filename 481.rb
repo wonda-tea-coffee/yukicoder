@@ -1,0 +1,1 @@
+puts 55-gets.chomp.split.map(&:to_i).sum
