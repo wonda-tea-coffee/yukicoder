@@ -1,0 +1,1 @@
+puts gets.chomp.index('575') ? 'YES' : 'NO'
