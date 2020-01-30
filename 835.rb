@@ -1,0 +1,1 @@
+puts (gets.chomp.to_i*1.5).to_i
