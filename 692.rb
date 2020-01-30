@@ -1,0 +1,1 @@
+puts gets.chomp == '1' ? 'square1001' : 'Petr'
