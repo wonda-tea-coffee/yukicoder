@@ -1,26 +1,25 @@
-N = gets.to_i
-q = Array.new(1<<N){[]}
-a = []
-(1<<N).times do |i|
-  q[i] = gets.split.map(&:to_i)
-  a[i] = q[i].pop
+n = gets.chomp.to_i
+q = []
+r = [] * n
+(1 << n).times do
+  l = gets.chomp.split.map(&:to_i)
+  r << l.pop
+  q << l
 end
 
-print "A="
-if a.uniq.size == 1
-  puts a[0] == 1 ? "⊤" : "⊥"
+if r.uniq.size == 1
+  puts "A=" + (r[0] == 0 ? '⊥' : '⊤')
   exit
 end
 
 ans = []
-(1<<N).times do |i|
-  if a[i] == 1
-    arr = []
-    N.times do |k|
-      str = (q[i][k] == 1 ? "" : "¬") + "P_#{k+1}"
-      arr.push(str)
-    end
-    ans.push("(" + arr.join("∧") + ")")
+r.each.with_index do |ri, i|
+  next if ri == 0
+
+  s = []
+  q[i].each.with_index(1) do |qj, j|
+    s << (qj == 0 ? '¬' : '') + "P_#{j}"
   end
+  ans << "(" + s.join('∧') + ")"
 end
-puts ans.join("∨")
+puts "A=" + ans.join('∨')
