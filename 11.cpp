@@ -13,7 +13,9 @@
 #include <tuple>
 #include <vector>
 
-#define rep(i,n) for (int i = 0; i < (n); ++i)
+#define REP(i,n) for (int i = 0; i < (n); ++i)
+#define SORT(a) sort((a).begin(), (a).end());
+#define UNIQ(a) SORT(a);(a).erase(unique((a).begin(), (a).end()), (a).end());
 
 using namespace std;
 using ll = long long;
@@ -26,16 +28,5 @@ int main() {
   cin.tie(0);
   ios::sync_with_stdio(false);
 
-  ll W, H, N; cin >> W >> H >> N;
-  int S[N], K[N];
-  rep(i, N) cin >> S[i] >> K[i];
 
-  set<int> setS, setK;
-  rep(i, N) {
-    setS.insert(S[i]);
-    setK.insert(K[i]);
-  }
-
-  ll A = setS.size(), B = setK.size();
-  cout << A * H + B * W - A * B - N << endl;
 }
