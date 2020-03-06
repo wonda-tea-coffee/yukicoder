@@ -55,11 +55,11 @@ int main() {
     if (sub < min) {
       q = decltype(q)();
       q.push(make_pair(i, n - i));
-      q.push(make_pair(n - i, i));
+      if (i != n - i) q.push(make_pair(n - i, i));
       min = sub;
     } else if (sub == min) {
       q.push(make_pair(i, n - i));
-      q.push(make_pair(n - i, i));
+      if (i != n - i) q.push(make_pair(n - i, i));
     }
   }
 
