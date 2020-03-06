@@ -37,5 +37,11 @@ int main() {
   ios::sync_with_stdio(false);
   srand((unsigned)time(NULL));
 
-  
+  ll n; cin >> n;
+
+  if (n % 6 == 0) {
+    Yes()
+  } else {
+    No()
+  }
 }

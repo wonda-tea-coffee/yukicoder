@@ -16,6 +16,7 @@
 #define rep(i,n)   for (int i = 0; i < (n); ++i)
 #define sort(a)    sort((a).begin(), (a).end());
 #define uniq(a)    SORT(a);(a).erase(unique((a).begin(), (a).end()), (a).end());
+#define find(a,x)  find((a).begin(), (a).end(), (x)) != (a).end()
 #define reverse(a) reverse((a).begin(), (a).end());
 #define out(d) cout << (d);
 #define outl(d) std::cout<<(d)<<"\n";
@@ -36,20 +37,27 @@ int main() {
   ios::sync_with_stdio(false);
   srand((unsigned)time(NULL));
 
-  string s, t; cin >> s >> t;
+  ll n, k; cin >> n >> k;
+  vector<ll> a(n); rep(i, n) cin >> a[i];
 
-  if (t.size() == 1 && s.find(t) != string::npos) {
-    outl(-1);
+  if (a[k - 1] == 0) {
+    outl(0)
     return 0;
   }
 
-  int ans = 0;
-  while (true) {
-    auto pos = s.find(t);
-    if (pos == string::npos) break;
-    s.insert(pos + t.size() - 1, ".");
-    ans++;
+  ll lsum = 0, rsum = 0;
+  for (int i = k - 2; i >= 0; i--) {
+    lsum += a[i];
+    if (a[i] <= 1) break;
+  }
+  for (int i = k; i < n; i++) {
+    rsum += a[i];
+    if (a[i] <= 1) break;
   }
 
-  outl(ans)
+  if (a[k - 1] == 1) {
+    outl(max(lsum, rsum) + 1)
+  } else {
+    outl(lsum + rsum + a[k - 1])
+  }
 }

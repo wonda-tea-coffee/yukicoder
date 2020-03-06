@@ -16,6 +16,7 @@
 #define rep(i,n)   for (int i = 0; i < (n); ++i)
 #define sort(a)    sort((a).begin(), (a).end());
 #define uniq(a)    SORT(a);(a).erase(unique((a).begin(), (a).end()), (a).end());
+#define find(a,x)  find((a).begin(), (a).end(), (x)) != (a).end()
 #define reverse(a) reverse((a).begin(), (a).end());
 #define out(d) cout << (d);
 #define outl(d) std::cout<<(d)<<"\n";
@@ -36,20 +37,34 @@ int main() {
   ios::sync_with_stdio(false);
   srand((unsigned)time(NULL));
 
-  string s, t; cin >> s >> t;
+  ll n; cin >> n;
+  vector<ll> f(n + 1);
+  for (int i = 1; i <= n; i++) f[i] = i;
 
-  if (t.size() == 1 && s.find(t) != string::npos) {
-    outl(-1);
-    return 0;
+  for (int i = 1; i <= n; i++) {
+    for (int j = i; j <= n; j += i) {
+      f[j]--;
+    }
   }
 
-  int ans = 0;
-  while (true) {
-    auto pos = s.find(t);
-    if (pos == string::npos) break;
-    s.insert(pos + t.size() - 1, ".");
-    ans++;
+  priority_queue<P, vector<P>, greater<P>> q;
+  ll min = 100000000;
+  for (int i = 1; i <= n / 2; i++) {
+    ll sub = abs(f[i] - f[n - i]);
+
+    if (sub < min) {
+      q = decltype(q)();
+      q.push(make_pair(i, n - i));
+      q.push(make_pair(n - i, i));
+      min = sub;
+    } else if (sub == min) {
+      q.push(make_pair(i, n - i));
+      q.push(make_pair(n - i, i));
+    }
   }
 
-  outl(ans)
+  while (!q.empty()) {
+    cout << q.top().first << " " << q.top().second << endl;
+    q.pop();
+  }
 }
