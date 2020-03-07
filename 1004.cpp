@@ -39,14 +39,9 @@ int main() {
 
   ll a, b, x0, n; cin >> a >> b >> x0 >> n;
 
-  if (n == 0) {
-    outl("0 0");
-    return 0;
-  }
-
   if (x0 % 2 == 0) {
-    cout << (n + 1) / 4 << " 0" << endl;
+    cout << "0 " << n / 2 << endl;
   } else {
-    cout << "0 " << (n + 1) / 4 << endl;
+    cout << n / 2 << " 0" << endl;
   }
 }
