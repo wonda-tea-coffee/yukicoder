@@ -50,24 +50,27 @@ const int dx[8] = {1, 0, -1, 0, 1, -1, -1, 1};
 const int dy[8] = {0, 1, 0, -1, 1, 1, -1, -1};
 
 void solve() {
-  ll N, M; cin >> N >> M;
-  if (M == 0) {
+  string N, M; cin >> N >> M;
+  if (M == "0") {
     outl(1);
     return;
   }
 
-  N %= 10;
-  if (N == 0 || N == 1 || N == 5 || N == 6) outl(N);
-  else if (N == 4) outl(M % 2 == 1 ? 4 : 6);
-  else if (N == 9) outl(M % 2 == 1 ? 9 : 1);
+  ll n = N[N.size()-1] - '0';
+  ll m;
+  if (M.size() < 2) m = stoll(M);
+  else m = stoll(M.substr(M.size()-2));
+  if (n == 0 || n == 1 || n == 5 || n == 6) outl(n);
+  else if (n == 4) outl(m % 2 == 1 ? 4 : 6);
+  else if (n == 9) outl(m % 2 == 1 ? 9 : 1);
   else {
-    M %= 4;
+    m %= 4;
     map<ll, vector<ll>> map;
     map[2] = {6, 2, 4, 8};
     map[3] = {1, 3, 9, 7};
     map[7] = {1, 7, 9, 3};
     map[8] = {6, 8, 4, 2};
-    outl(map[N][M]);
+    outl(map[n][m]);
   }
 }
 
