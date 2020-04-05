@@ -67,6 +67,12 @@ vector<P> factor(ll n) {
 
 void solve() {
   ll M; cin >> M;
+
+  if (M == 1) {
+    outl("1 1");
+    return;
+  }
+
   vector<P> v = factor(M);
   if (v.size() == 1 && v[0].first == M) cout << 1 << " " << M << endl;
   else cout << v[0].first << " " << M/v[0].first << endl;
