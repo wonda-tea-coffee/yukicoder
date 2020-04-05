@@ -52,7 +52,6 @@ const int dy[8] = {0, 1, 0, -1, 1, 1, -1, -1};
 void solve() {
   ll N; cin >> N;
   deque<char> deq;
-  ll d = 1;
   while(1) {
     deq.push_front('A' + N % 26);
     N /= 26;
